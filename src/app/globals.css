@@ -1,37 +1,47 @@
+/* Hallmark · v2.0.0 · custom · genre: editorial · surface: absolute · posture: restrained · nav: topbar · footer: multi-column · hero: split · signature: calm-ritual-commerce */
+/* Hallmark · critique · Unified Pretendard typography and #262926/#666D64/#65755F/#F6F7F3/#E2E6DF tokens, tightened above-the-fold density. */
+/* Hallmark · waive 7b · pure white canvas · User specification explicitly mandates #FFFFFF base background for neutral product color fidelity across all eight goods. */
 @import "tailwindcss";
 
 @theme inline {
   --color-bg: #FFFFFF;
-  --color-surface: #F7F6F2;
-  --color-ink: #1A1A1A;
-  --color-body: #4F4F4B;
-  --color-muted: #787872;
-  --color-accent: #5B8477;
-  --color-accent-hover: #496C61;
-  --color-line: #E5E4DE;
+  --color-surface: #F6F7F3;
+  --color-ink: #262926;
+  --color-body: #262926;
+  --color-muted: #666D64;
+  --color-accent: #65755F;
+  --color-accent-hover: #53624E;
+  --color-line: #E2E6DF;
 
-  --font-serif-en: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
-  --font-serif-kr: var(--font-gowun-batang), "Gowun Batang", "Noto Serif KR", serif;
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
 }
 
 :root {
   --bg: #FFFFFF;
-  --surface: #F7F6F2;
-  --ink: #1A1A1A;
-  --body: #4F4F4B;
-  --muted: #787872;
-  --accent: #5B8477;
-  --accent-hover: #496C61;
-  --line: #E5E4DE;
+  --surface: #F6F7F3;
+  --ink: #262926;
+  --body: #262926;
+  --muted: #666D64;
+  --accent: #65755F;
+  --accent-hover: #53624E;
+  --line: #E2E6DF;
+  --backdrop-modal: rgba(38, 41, 38, 0.42);
+  --backdrop-drawer: rgba(38, 41, 38, 0.36);
+  --font-body: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
 }
 
-/* 직각 조형 시스템 (border-radius: 0 전역 보장) */
+/* 직각 조형 시스템 (border-radius: 0 전역 보장, 불필요한 그림자 제거) */
 *,
 *::before,
 *::after {
   border-radius: 0 !important;
+  box-shadow: none !important;
   box-sizing: border-box;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--bg);
 }
 
 html {
@@ -43,10 +53,11 @@ html {
 
 body {
   background-color: var(--bg);
-  color: var(--body);
-  font-family: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
-  font-size: 15px;
-  line-height: 1.75;
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.65;
   word-break: keep-all;
   overflow-wrap: break-word;
   overflow-x: clip;
@@ -54,26 +65,33 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-@media (min-width: 768px) {
-  body {
-    font-size: 16px;
-  }
+h1,
+h2 {
+  font-family: var(--font-body);
+  color: var(--ink);
+  overflow-wrap: break-word;
+  min-width: 0;
+  text-wrap: balance;
 }
 
-/* 타이포그래피 유틸리티 */
-.font-editorial-en {
-  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+h3,
+h4 {
+  font-family: var(--font-body);
+  color: var(--ink);
+  overflow-wrap: break-word;
+  min-width: 0;
 }
 
-.font-editorial-kr {
-  font-family: var(--font-gowun-batang), "Gowun Batang", "Noto Serif KR", Georgia, serif;
+button:not(:disabled):active,
+a:active {
+  opacity: 0.88;
 }
 
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }
 
-/* 비대칭 2단 룩북 그리드 (1.15fr : 0.85fr) */
+/* 비대칭 2단 그리드 (이미지 트랙 minmax 보장) */
 .lookbook-asymmetric {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -82,8 +100,8 @@ body {
 
 @media (min-width: 1024px) {
   .lookbook-asymmetric {
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
-    gap: 4.5rem;
+    grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr);
+    gap: 3.5rem;
   }
 }
 
@@ -95,40 +113,14 @@ body {
 
 @media (min-width: 1024px) {
   .lookbook-asymmetric-reverse {
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: 4.5rem;
+    grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+    gap: 3.5rem;
   }
 }
 
-/* 스크롤 리빌 마이크로 인터랙션 (useReveal 연동, prefers-reduced-motion 존중) */
-.reveal-block {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
-}
-
-.reveal-block[data-visible="true"] {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  .reveal-block {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-}
-
-/* 상품 카드 호버 이미지 절제된 확대 (scale 1.03) */
+/* 상품 카드 호버 절제된 이미지 확대 */
 .editorial-card-img {
-  transition: transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .group:hover .editorial-card-img {
@@ -136,6 +128,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .editorial-card-img,
   .group:hover .editorial-card-img {
     transition: none;
@@ -143,17 +138,16 @@ body {
   }
 }
 
-/* Native <dialog> 모달 및 드로어 — modern-web-guidance 준수 */
+/* Native <dialog> 모달 및 드로어 — modern-web-guidance 준수 (100vw 미사용) */
 dialog.chalna-dialog {
   border: 1px solid var(--line);
   background: var(--bg);
   color: var(--ink);
   padding: 0;
   margin: auto;
-  max-width: min(560px, calc(100vw - 24px));
+  max-width: min(560px, calc(100% - 24px));
   max-height: calc(100dvh - 32px);
   width: 100%;
-  box-shadow: none;
 }
 
 dialog.chalna-dialog:modal {
@@ -161,7 +155,7 @@ dialog.chalna-dialog:modal {
 }
 
 dialog.chalna-dialog::backdrop {
-  background: rgba(26, 26, 26, 0.42);
+  background: var(--backdrop-modal);
   overflow: hidden;
   overscroll-behavior: contain;
 }
@@ -175,9 +169,8 @@ dialog.chalna-drawer {
   margin: 0 0 0 auto;
   height: 100dvh;
   max-height: 100dvh;
-  width: min(440px, 100vw);
-  max-width: 100vw;
-  box-shadow: none;
+  width: min(440px, 100%);
+  max-width: 100%;
 }
 
 dialog.chalna-drawer[open] {
@@ -190,12 +183,12 @@ dialog.chalna-drawer:modal {
 }
 
 dialog.chalna-drawer::backdrop {
-  background: rgba(26, 26, 26, 0.36);
+  background: var(--backdrop-drawer);
   overflow: hidden;
   overscroll-behavior: contain;
 }
 
-/* Native <details> Stage 5 이야기 영역 — modern-web-guidance 준수 */
+/* Native <details> 접힌 이야기 영역 */
 details.chalna-story > summary {
   list-style: none;
   cursor: pointer;
@@ -205,29 +198,13 @@ details.chalna-story > summary::-webkit-details-marker {
   display: none;
 }
 
-details.chalna-story::details-content {
-  interpolate-size: allow-keywords;
-  overflow: clip;
-  contain: layout;
-}
-
-details.chalna-story:not([open])::details-content {
-  block-size: 0;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  details.chalna-story::details-content {
-    transition: block-size 0.35s cubic-bezier(0.22, 1, 0.36, 1), content-visibility 0.35s allow-discrete;
-  }
-}
-
-/* 포커스 링 접근성 */
+/* 포커스 링 접근성 (즉시 표시) */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-/* 가로 스크롤바 숨김 (스티키 탭 등) */
+/* 가로 스크롤바 숨김 */
 .no-scrollbar {
   scrollbar-width: none;
   -ms-overflow-style: none;

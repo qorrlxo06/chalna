@@ -63,23 +63,18 @@ export function CartDrawer() {
       }}
     >
       {/* 헤더 */}
-      <div className="flex items-center justify-between border-b border-[#E5E4DE] px-6 py-5 shrink-0">
-        <div>
-          <p className="font-editorial-en text-[11px] tracking-[0.22em] uppercase text-[#787872]">
-            YOUR SELECTION
-          </p>
-          <h2
-            id="cart-drawer-title"
-            className="mt-0.5 font-editorial-kr text-[20px] text-[#1A1A1A]"
-          >
-            장바구니 <span className="font-editorial-en text-[#5B8477]">({totalCount})</span>
-          </h2>
-        </div>
+      <div className="flex items-center justify-between border-b border-line px-6 py-5 shrink-0">
+        <h2
+          id="cart-drawer-title"
+          className="text-[20px] font-semibold text-ink"
+        >
+          장바구니 <span className="tabular-nums text-accent">({totalCount})</span>
+        </h2>
         <button
           type="button"
           onClick={closeCart}
           autoFocus
-          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center text-[#4F4F4B] hover:text-[#1A1A1A] transition-colors cursor-pointer"
+          className="inline-flex min-h-[48px] min-w-[48px] items-center justify-center text-muted hover:text-ink transition-colors cursor-pointer"
           aria-label="장바구니 닫기"
         >
           <X className="h-5 w-5" strokeWidth={1.5} />
@@ -90,23 +85,22 @@ export function CartDrawer() {
       <div className="flex-1 overflow-y-auto px-6 py-6">
         {items.length === 0 ? (
           <div className="flex h-full min-h-[260px] flex-col items-center justify-center text-center">
-            <div className="w-8 h-[1px] bg-[#E5E4DE] mb-5" aria-hidden="true" />
-            <p className="font-editorial-kr text-[17px] text-[#1A1A1A]">
-              아직 담아둔 오브제가 없습니다.
+            <p className="text-[16px] font-medium text-ink">
+              장바구니가 비어 있습니다.
             </p>
-            <p className="mt-2 text-[14px] text-[#787872]">
-              하루에 짧은 쉼을 더할 오브제를 천천히 살펴보세요.
+            <p className="mt-2 text-[14px] text-muted">
+              일상에 작은 쉼을 더하는 생활 굿즈를 둘러보세요.
             </p>
             <Link
               href="/products"
               onClick={closeCart}
-              className="mt-6 inline-flex min-h-[48px] items-center justify-center border border-[#1A1A1A] px-6 text-[14px] text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-[#FFFFFF] transition-colors"
+              className="mt-6 inline-flex min-h-[48px] items-center justify-center border border-ink px-6 text-[14px] font-medium text-ink hover:bg-ink hover:text-bg transition-colors"
             >
-              컬렉션 둘러보기
+              상품 보러가기
             </Link>
           </div>
         ) : (
-          <ul className="divide-y divide-[#E5E4DE]">
+          <ul className="divide-y divide-line">
             {items.map((item) => (
               <li key={item.key} className="py-5 first:pt-0">
                 <div className="flex gap-4">
@@ -118,7 +112,7 @@ export function CartDrawer() {
                     <img
                       src={item.imageSrc}
                       alt={item.productName}
-                      className="h-20 w-20 object-cover border border-[#E5E4DE] bg-[#F7F6F2]"
+                      className="h-20 w-20 object-cover border border-line bg-bg"
                     />
                   </Link>
                   <div className="flex-1 min-w-0">
@@ -126,44 +120,49 @@ export function CartDrawer() {
                       <Link
                         href={`/products/${item.productSlug}`}
                         onClick={closeCart}
-                        className="text-[15px] font-medium text-[#1A1A1A] hover:text-[#5B8477] transition-colors"
+                        className="text-[15px] font-medium text-ink hover:text-accent transition-colors"
                       >
                         {item.productName}
                       </Link>
                       <button
                         type="button"
                         onClick={() => removeItem(item.key)}
-                        className="inline-flex min-h-[40px] min-w-[40px] -mt-2 -mr-2 items-center justify-center text-[#787872] hover:text-[#1A1A1A] transition-colors cursor-pointer"
+                        className="inline-flex min-h-[40px] min-w-[40px] -mt-2 -mr-2 items-center justify-center text-muted hover:text-ink transition-colors cursor-pointer"
                         aria-label={`${item.productName} 삭제`}
                       >
                         <Trash2 className="h-4 w-4" strokeWidth={1.5} />
                       </button>
                     </div>
-                    <p className="text-[13px] text-[#787872]">{item.optionSummary}</p>
+                    <p className="text-[13px] text-muted leading-[1.5]">
+                      {item.optionSummary}
+                    </p>
+                    <p className="mt-1 text-[12px] text-muted tabular-nums">
+                      단가 {formatKRW(item.unitPrice)}
+                    </p>
 
                     <div className="mt-3 flex items-center justify-between gap-2">
-                      <div className="inline-flex items-center border border-[#E5E4DE]">
+                      <div className="inline-flex items-center border border-line">
                         <button
                           type="button"
                           onClick={() => updateQuantity(item.key, item.quantity - 1)}
-                          className="inline-flex h-10 w-10 items-center justify-center text-[#4F4F4B] hover:bg-[#F7F6F2] cursor-pointer"
+                          className="inline-flex h-10 w-10 items-center justify-center text-ink hover:bg-surface cursor-pointer"
                           aria-label="수량 줄이기"
                         >
                           <Minus className="h-3.5 w-3.5" strokeWidth={1.5} />
                         </button>
-                        <span className="w-9 text-center text-[14px] text-[#1A1A1A] tabular-nums">
+                        <span className="w-9 text-center text-[14px] text-ink tabular-nums">
                           {item.quantity}
                         </span>
                         <button
                           type="button"
                           onClick={() => updateQuantity(item.key, item.quantity + 1)}
-                          className="inline-flex h-10 w-10 items-center justify-center text-[#4F4F4B] hover:bg-[#F7F6F2] cursor-pointer"
+                          className="inline-flex h-10 w-10 items-center justify-center text-ink hover:bg-surface cursor-pointer"
                           aria-label="수량 늘리기"
                         >
                           <Plus className="h-3.5 w-3.5" strokeWidth={1.5} />
                         </button>
                       </div>
-                      <p className="text-[15px] font-medium text-[#1A1A1A] tabular-nums">
+                      <p className="text-[15px] font-semibold text-ink tabular-nums">
                         {formatKRW(item.unitPrice * item.quantity)}
                       </p>
                     </div>
@@ -175,22 +174,22 @@ export function CartDrawer() {
         )}
       </div>
 
-      {/* 하단 요약 및 시연 주문 버튼 */}
+      {/* 하단 요약 및 주문 버튼 */}
       {items.length > 0 && (
-        <div className="border-t border-[#E5E4DE] bg-[#F7F6F2] px-6 py-5 shrink-0 space-y-4">
+        <div className="border-t border-line bg-surface px-6 py-5 shrink-0 space-y-4">
           <div className="flex items-baseline justify-between">
-            <span className="text-[14px] text-[#4F4F4B]">선택 합계</span>
-            <span className="font-editorial-en text-[24px] text-[#1A1A1A] tabular-nums">
+            <span className="text-[14px] font-medium text-muted">총 상품금액</span>
+            <span className="text-[22px] font-semibold text-ink tabular-nums">
               {formatKRW(totalAmount)}
             </span>
           </div>
-          <p className="text-[12px] text-[#787872]">
-            장바구니에 담은 상품은 현재 브라우저에 임시 보관됩니다.
+          <p className="text-[12px] text-muted">
+            장바구니에 담은 상품은 현재 브라우저에 보관됩니다.
           </p>
           <button
             type="button"
             onClick={openCartCheckout}
-            className="w-full min-h-[52px] bg-[#5B8477] text-[15px] font-medium text-[#FFFFFF] hover:bg-[#496C61] transition-colors cursor-pointer"
+            className="w-full min-h-[52px] bg-accent text-[15px] font-medium text-bg hover:bg-accent-hover transition-colors cursor-pointer"
           >
             주문하기
           </button>

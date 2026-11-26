@@ -4,16 +4,15 @@ import { useEffect, useState } from "react";
 
 export interface SectionItem {
   id: string;
-  num: string;
   label: string;
 }
 
 const DEFAULT_SECTIONS: SectionItem[] = [
-  { id: "stage-1", num: "01", label: "개요·구성" },
-  { id: "stage-2", num: "02", label: "룩북·디테일" },
-  { id: "stage-3", num: "03", label: "3분 리추얼" },
-  { id: "stage-4", num: "04", label: "리필·스펙·안전" },
-  { id: "stage-5", num: "05", label: "찰나의 이야기" },
+  { id: "stage-1", label: "핵심 특징" },
+  { id: "stage-2", label: "구성" },
+  { id: "stage-3", label: "사용 순서" },
+  { id: "stage-4", label: "사양·관리" },
+  { id: "stage-5", label: "이야기" },
 ];
 
 export function StickySectionNav({
@@ -52,10 +51,10 @@ export function StickySectionNav({
   return (
     <nav
       aria-label="상세페이지 섹션 바로가기"
-      className="sticky top-16 md:top-[72px] z-30 w-full border-y border-[#E5E4DE] bg-[#FFFFFF]/95 backdrop-blur-sm"
+      className="sticky top-16 md:top-[72px] z-30 w-full border-y border-line bg-bg/95 backdrop-blur-sm"
     >
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
-        <ul className="flex items-center gap-1 sm:gap-6 overflow-x-auto no-scrollbar">
+        <ul className="flex items-center gap-6 sm:gap-8 overflow-x-auto whitespace-nowrap no-scrollbar -mb-[1px]">
           {sections.map((section) => {
             const isActive = activeId === section.id;
             return (
@@ -64,16 +63,13 @@ export function StickySectionNav({
                   href={`#${section.id}`}
                   onClick={() => setActiveId(section.id)}
                   aria-current={isActive ? "true" : undefined}
-                  className={`inline-flex min-h-[48px] items-center gap-1.5 px-2.5 sm:px-1 text-[13px] sm:text-[14px] whitespace-nowrap border-b-2 transition-colors ${
+                  className={`inline-flex min-h-[48px] items-center text-[14px] border-b-2 transition-colors ${
                     isActive
-                      ? "border-[#5B8477] text-[#1A1A1A] font-medium"
-                      : "border-transparent text-[#787872] hover:text-[#1A1A1A]"
+                      ? "border-accent text-ink font-medium"
+                      : "border-transparent text-muted hover:text-ink"
                   }`}
                 >
-                  <span className="font-editorial-en text-[13px] tracking-[0.12em]">
-                    {section.num}
-                  </span>
-                  <span>{section.label}</span>
+                  {section.label}
                 </a>
               </li>
             );

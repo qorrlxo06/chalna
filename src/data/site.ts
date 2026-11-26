@@ -1,15 +1,25 @@
+const RAW_SURVEY_URL = (process.env.NEXT_PUBLIC_SURVEY_URL ?? "").trim();
+
+export const IS_SURVEY_READY =
+  RAW_SURVEY_URL.startsWith("https://") &&
+  RAW_SURVEY_URL.includes("/viewform") &&
+  !RAW_SURVEY_URL.includes("chalna-mvp-demo-survey");
+
+export const SURVEY_URL = IS_SURVEY_READY ? RAW_SURVEY_URL : "";
+
 export const SITE_INFO = {
   brandKo: "찰나",
   brandHanja: "刹那",
   brandEn: "CHALNA",
   tagline: "하루 중 가장 짧은 쉼",
   description:
-    "하루 끝에 켜는 작은 빛, 따뜻한 차 한 잔, 적고 접어 내려놓는 한 장의 기록. 일상 속 3분의 멈춤을 만드는 리추얼 오브제 셀렉션.",
-  surveyUrl:
-    "https://docs.google.com/forms/d/e/1FAIpQLSc-chalna-mvp-demo-survey/viewform",
+    "불을 켜고, 차를 우리고, 생각을 적는 시간. 일상에 작은 쉼을 더하는 찰나의 생활 굿즈 8종을 만나보세요.",
+  surveyUrl: SURVEY_URL,
+  isSurveyReady: IS_SURVEY_READY,
   templestayUrl: "https://www.templestay.com",
   business: {
-    notice: "※ 아래 사업자 정보는 시연용 예시 정보이며, 실제 결제 및 배송은 진행되지 않습니다.",
+    notice:
+      "아래 사업자 정보는 교육용 시연 사이트의 예시 정보이며, 실제 결제·배송 및 개인정보 수집은 진행되지 않습니다.",
     companyName: "찰나 스튜디오 (CHALNA Studio)",
     ceo: "윤성민",
     registrationNumber: "000-00-00000 (예시)",
@@ -22,33 +32,33 @@ export const SITE_INFO = {
 export const CATEGORIES = [
   {
     id: "all",
-    label: "전체 보기",
-    enLabel: "ALL OBJECTS",
-    description: "하루의 결을 정돈하는 찰나의 여덟 가지 리추얼 오브제.",
+    label: "전체 여덟 가지",
+    description: "일상에 작은 쉼을 더하는 생활 굿즈 8종을 한눈에 살펴보세요.",
   },
   {
-    id: "space",
-    label: "공간·휴식",
-    enLabel: "SPACE & REST",
-    description: "머무는 자리에 고요한 빛과 온기, 잠깐의 쉼을 놓는 오브제.",
+    id: "night",
+    label: "머무는 밤",
+    description: "하루의 끝자락, 머무는 자리에 고요한 빛과 편안함을 더합니다.",
   },
   {
-    id: "tea-note",
-    label: "차·기록",
-    enLabel: "TEA & NOTE",
-    description: "따뜻한 차 한 잔과 손끝의 기록으로 생각을 정리하는 루틴.",
+    id: "unload",
+    label: "덜어내는 기록",
+    description: "복잡한 생각과 손끝의 긴장을 가볍게 내려놓는 작은 습관.",
   },
   {
-    id: "mind-gift",
-    label: "마음·선물",
-    enLabel: "MIND & GIFT",
-    description: "가까이 두거나 소중한 이에게 평안을 전하는 작은 오브제와 선물.",
+    id: "warmth-air",
+    label: "온기와 환기",
+    description: "따뜻한 차 한 잔과 맑은 소리, 기분 좋은 향으로 공간을 환기합니다.",
+  },
+  {
+    id: "keepsake",
+    label: "곁에 두는 마음",
+    description: "늘 곁에 두거나 소중한 이에게 평안을 전하는 작은 마음.",
   },
   {
     id: "refill",
     label: "리필 스테이션",
-    enLabel: "REFILL STATION",
-    description: "다 쓴 뒤에도 같은 쉼을 이어갈 수 있는 소모품 리필 라인업.",
+    description: "다 쓴 뒤에도 같은 쉼을 이어갈 수 있는 전용 소모품 리필.",
   },
 ] as const;
 

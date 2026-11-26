@@ -4,21 +4,27 @@ import { EditorialImage } from "@/components/ui/EditorialImage";
 
 interface ProductCardProps {
   product: Product;
+  /** '전체 여덟 가지' 탭에서만 false를 전달해 카드 하단 '리필 가능' 문구 숨김 */
+  showRefill?: boolean;
   showRefillMeta?: boolean;
   priority?: boolean;
 }
 
 export function ProductCard({
   product,
+  showRefill = true,
   showRefillMeta = false,
   priority = false,
 }: ProductCardProps) {
+  const displayPrice = product.listPriceDisplay ?? formatKRW(product.basePrice);
+
   return (
-    <article className="group flex flex-col">
+    <article className="group flex flex-col h-full">
       <Link
         href={`/products/${product.slug}`}
-        className="block focus-visible:outline-2 focus-visible:outline-[#5B8477]"
+        className="flex flex-col flex-1 focus-visible:outline-2 focus-visible:outline-accent"
       >
+        {/* 1. 사진 */}
         <EditorialImage
           src={product.images.main.src}
           alt={product.images.main.alt}
@@ -26,37 +32,42 @@ export function ProductCard({
           imgClassName="editorial-card-img"
           showAiCaption
           priority={priority}
+          tone="white"
         />
 
-        <div className="mt-4 pt-3 border-t border-[#E5E4DE]">
-          <div className="flex items-center justify-between gap-2 text-[12px] tracking-[0.06em] text-[#787872]">
-            <span>{product.categoryLabel}</span>
-            <span className="font-editorial-en tracking-[0.18em]">
-              {product.code}
-            </span>
-          </div>
+        {/* 2. 상품명 → 3. 가격 → 4. 한 줄 특징 */}
+        <div className="mt-3.5 pt-3 border-t border-line flex flex-col flex-1">
+          <p className="text-[12px] text-muted">{product.categoryLabel}</p>
 
-          <div className="mt-2 flex items-baseline justify-between gap-3">
-            <h3 className="font-editorial-kr text-[19px] text-[#1A1A1A] group-hover:text-[#5B8477] transition-colors">
-              {product.name}
-            </h3>
-            <p className="shrink-0 text-[15px] font-medium text-[#1A1A1A] tabular-nums">
-              {formatKRW(product.basePrice)}
+          <h3 className="mt-1 text-[18px] font-semibold leading-[1.4] text-ink group-hover:text-accent transition-colors">
+            {product.name}
+          </h3>
+
+          <div className="mt-1.5 flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
+            <p className="text-[16px] font-semibold text-ink tabular-nums">
+              {displayPrice}
             </p>
+            {product.listPriceSubNote && (
+              <span className="text-[13px] text-muted">
+                {product.listPriceSubNote}
+              </span>
+            )}
           </div>
 
-          <p className="mt-1.5 text-[14px] leading-[1.65] text-[#4F4F4B]">
+          <p className="mt-2 text-[14px] leading-[1.6] text-muted">
             {product.oneLiner}
           </p>
 
-          {product.refill.available && (
-            <div className="mt-3 pt-2.5 border-t border-[#E5E4DE]/70 flex items-center justify-between gap-2 text-[12px] text-[#5B8477]">
-              <span>리필 가능 · {product.refill.recommendedCycle}</span>
-              {showRefillMeta && product.refill.refillPrice && (
-                <span className="tabular-nums font-medium">
-                  리필 {formatKRW(product.refill.refillPrice)}
-                </span>
-              )}
+          {showRefill && product.refill.available && (
+            <div className="mt-auto pt-3">
+              <div className="border-t border-line pt-2.5 flex items-center justify-between gap-2 text-[13px] text-accent font-medium">
+                <span>리필 가능</span>
+                {showRefillMeta && product.refill.refillPrice && (
+                  <span className="tabular-nums">
+                    리필 {formatKRW(product.refill.refillPrice)}
+                  </span>
+                )}
+              </div>
             </div>
           )}
         </div>

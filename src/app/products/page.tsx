@@ -3,17 +3,17 @@ import type { Metadata } from "next";
 import { CatalogClient } from "@/components/CatalogClient";
 
 export const metadata: Metadata = {
-  title: "컬렉션",
+  title: "전체 여덟 가지",
   description:
-    "공간·휴식, 차·기록, 마음·선물, 리필 스테이션 — 찰나의 8가지 리추얼 오브제를 살펴보세요.",
+    "머무는 밤, 덜어내는 기록, 온기와 환기, 곁에 두는 마음, 리필 스테이션 — 찰나의 생활 굿즈 8종을 만나보세요.",
 };
 
 export default function ProductsPage() {
   return (
     <Suspense
       fallback={
-        <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10 py-20 text-[15px] text-[#787872]">
-          컬렉션을 불러오는 중입니다...
+        <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10 py-16 text-[15px] text-muted">
+          상품 목록을 불러오는 중입니다.
         </div>
       }
     >
