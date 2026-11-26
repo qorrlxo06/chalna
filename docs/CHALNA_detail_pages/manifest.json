@@ -1,0 +1,66 @@
+[
+  {
+    "code": "P01",
+    "product": "연꽃 무드등",
+    "file": "P01_lotus_lamp.png",
+    "width": 724,
+    "height": 2172,
+    "sha256": "4966eb590eece5f0c21d364a35a1984114816a14c804cd4d9a9f1575f3dd1804"
+  },
+  {
+    "code": "P02",
+    "product": "108매듭 실팔찌",
+    "file": "P02_108_knot_bracelet.png",
+    "width": 724,
+    "height": 2172,
+    "sha256": "0fd1d041012a8166b114b8c6678f117f8a2cd0add4495b0a952d593a256f1fa6"
+  },
+  {
+    "code": "P03",
+    "product": "변색 연꽃 찻잔·티백 세트",
+    "file": "P03_lotus_tea_set.png",
+    "width": 724,
+    "height": 2172,
+    "sha256": "f5706fbcf733f29e78afb5e89e189530718066979e33941148923840541835fb"
+  },
+  {
+    "code": "P04",
+    "product": "연꽃 입체 편지지",
+    "file": "P04_lotus_letter.png",
+    "width": 724,
+    "height": 2172,
+    "sha256": "91977d243bf8e324ef605e9ffa111798d11393e5183b04fe4eaaa95ee49e698b"
+  },
+  {
+    "code": "P05",
+    "product": "풍경 집들이 세트",
+    "file": "P05_housewarming_set.png",
+    "width": 724,
+    "height": 2172,
+    "sha256": "a83313215e1462079bf6aa480f12db0ac10a7912192bb07c69c2a6401e6dfab3"
+  },
+  {
+    "code": "P06",
+    "product": "108장 잡념 노트",
+    "file": "P06_distress_note.png",
+    "width": 724,
+    "height": 2172,
+    "sha256": "10f06d193555b942c25c01fc8e5b65733fb2408bdc600fb4e683a6f5af6e80ed"
+  },
+  {
+    "code": "P07",
+    "product": "꽃잎 퀼팅 메모리폼 방석",
+    "file": "P07_petal_cushion.png",
+    "width": 724,
+    "height": 2172,
+    "sha256": "09e6e963e6b264e049f2aeee52039ce231aa5da500f63d82279a872f5ed37aa7"
+  },
+  {
+    "code": "P08",
+    "product": "코끼리 말랑이",
+    "file": "P08_elephant_squishy.png",
+    "width": 724,
+    "height": 2172,
+    "sha256": "690be9cf71faca4cbb704b29bc206d2f171490e0a883ed775a279199b2856dda"
+  }
+]
