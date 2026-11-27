@@ -11,18 +11,40 @@ interface RitualTimerProps {
 
 const CYCLE_TOTAL = 14; // 4초 들숨 + 4초 멈춤 + 6초 날숨
 
-function getBreathPhase(elapsedSec: number) {
+type BreathPhaseId = "inhale" | "hold" | "exhale";
+
+function getBreathPhase(elapsedSec: number): {
+  id: BreathPhaseId;
+  label: string;
+  guide: string;
+  hint: string;
+  ratio: number;
+} {
   const mod = elapsedSec % CYCLE_TOTAL;
   if (mod < 4) {
-    return { label: "천천히 들이마시기", hint: `${4 - mod}초`, ratio: (mod + 1) / 4 };
+    return {
+      id: "inhale",
+      label: "들이마시기",
+      guide: "코로 부드럽게 숨을 들이마십니다.",
+      hint: `${4 - mod}초`,
+      ratio: (mod + 1) / 4,
+    };
   }
   if (mod < 8) {
-    return { label: "잠시 머무르기", hint: `${8 - mod}초`, ratio: 1 };
+    return {
+      id: "hold",
+      label: "머무르기",
+      guide: "가슴과 어깨의 힘을 풀고 잠시 머무릅니다.",
+      hint: `${8 - mod}초`,
+      ratio: 1,
+    };
   }
   return {
+    id: "exhale",
     label: "길게 내쉬기",
+    guide: "입술 사이로 천천히, 끝까지 숨을 비워냅니다.",
     hint: `${14 - mod}초`,
-    ratio: Math.max(0.15, (14 - mod) / 6),
+    ratio: Math.max(0.12, (14 - mod) / 6),
   };
 }
 
@@ -125,15 +147,25 @@ export function RitualTimer({
     setRemaining(selectedTotal);
   };
 
-  return (
-    <div className="border border-line bg-surface p-6 sm:p-8">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line pb-4">
-        <h3 className="text-[18px] sm:text-[20px] font-semibold text-ink">
-          {title}
-        </h3>
+  const phases: { id: BreathPhaseId; label: string; sec: string }[] = [
+    { id: "inhale", label: "들이마시기", sec: "4초" },
+    { id: "hold", label: "머무르기", sec: "4초" },
+    { id: "exhale", label: "길게 내쉬기", sec: "6초" },
+  ];
 
-        {/* 시간 프리셋 */}
-        <div className="flex items-center gap-2" role="group" aria-label="타이머 시간 선택">
+  return (
+    <div className="border border-line bg-surface p-6 sm:p-8 lg:p-10">
+      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-line pb-5">
+        <h2 className="font-editorial-kr text-[21.5px] sm:text-[24px] font-bold text-ink">
+          {title}
+        </h2>
+
+        {/* 시간 선택 탭 (3분 · 5분 · 10분) */}
+        <div
+          className="flex items-center gap-2"
+          role="group"
+          aria-label="호흡 시간 선택"
+        >
           {presets.map((sec) => {
             const active = selectedTotal === sec;
             return (
@@ -142,7 +174,7 @@ export function RitualTimer({
                 type="button"
                 onClick={() => handleSelectPreset(sec)}
                 aria-pressed={active}
-                className={`min-h-[44px] px-4 text-[14px] font-medium border transition-colors cursor-pointer ${
+                className={`min-h-[48px] min-w-[68px] px-4 text-[15.5px] ui-label font-medium border transition-colors cursor-pointer tabular-nums ${
                   active
                     ? "border-accent bg-accent text-bg"
                     : "border-line bg-bg text-muted hover:border-ink hover:text-ink"
@@ -155,33 +187,62 @@ export function RitualTimer({
         </div>
       </div>
 
-      {/* 중앙 카운트다운 + 호흡 리듬 */}
-      <div className="py-7 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-        <div className="md:col-span-5">
+      {/* 중앙 카운트다운 + 14초 호흡 리듬 게이지 */}
+      <div className="py-8 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="lg:col-span-5 space-y-3">
           <p
-            className="text-[48px] sm:text-[56px] font-semibold leading-none tracking-[-0.02em] text-ink tabular-nums"
+            className="font-editorial-en text-[58px] sm:text-[68px] font-medium leading-none tracking-[-0.02em] text-ink tabular-nums"
             aria-live="off"
           >
             {formatClock(remaining)}
           </p>
-          <p className="mt-2.5 text-[13px] text-muted">
+          <p className="text-[15.5px] leading-[1.7] text-muted">
             {completed
               ? "짧은 쉼을 마쳤습니다. 이제 나의 속도로 돌아가 보세요."
               : running
-              ? "4초 들이마시고, 4초 머무른 뒤, 6초 동안 천천히 내쉽니다."
-              : "시작 버튼을 눌러 지금 이 자리에서 잠깐 호흡을 맞춰 보세요."}
+              ? breath.guide
+              : "시작 버튼을 눌러 4·4·6 리듬에 맞춰 지금 이 자리에서 호흡해 보세요."}
           </p>
         </div>
 
-        <div className="md:col-span-7 space-y-4">
-          <div className="border border-line bg-bg p-4">
-            <div className="flex items-center justify-between text-[13px]">
-              <span className="text-muted">호흡 리듬 가이드</span>
-              <span className="font-medium text-accent tabular-nums">
-                {running ? `${breath.label} (${breath.hint})` : "대기 중 (4·4·6 호흡)"}
+        <div className="lg:col-span-7 space-y-5">
+          {/* 3단계 호흡 리듬 카드 */}
+          <div className="border border-line bg-bg p-5 space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2 text-[15px]">
+              <span className="text-muted">14초 호흡 리듬</span>
+              <span className="font-semibold text-accent tabular-nums">
+                {running
+                  ? `${breath.label} · ${breath.hint}`
+                  : "대기 중 (4초 들숨 · 4초 머무름 · 6초 날숨)"}
               </span>
             </div>
-            <div className="mt-3 h-1.5 w-full bg-surface border border-line overflow-hidden">
+
+            <div className="grid grid-cols-3 gap-2">
+              {phases.map((p) => {
+                const isCurrent = running && breath.id === p.id;
+                return (
+                  <div
+                    key={p.id}
+                    className={`border px-3 py-2.5 text-center transition-colors ${
+                      isCurrent
+                        ? "border-accent bg-surface text-ink"
+                        : "border-line bg-bg text-muted"
+                    }`}
+                  >
+                    <p
+                      className={`text-[14.5px] ${
+                        isCurrent ? "font-semibold text-accent" : "font-medium"
+                      }`}
+                    >
+                      {p.label}
+                    </p>
+                    <p className="mt-0.5 text-[13.5px] tabular-nums">{p.sec}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="h-2 w-full bg-surface border border-line overflow-hidden">
               <div
                 className="h-full w-full bg-accent origin-left transition-transform duration-700"
                 style={{
@@ -191,12 +252,15 @@ export function RitualTimer({
             </div>
           </div>
 
+          {/* 전체 진행률 */}
           <div>
-            <div className="flex items-center justify-between text-[12px] text-muted mb-1.5">
+            <div className="flex items-center justify-between text-[14px] text-muted mb-2">
               <span>전체 진행률</span>
-              <span className="tabular-nums">{Math.round(progressRatio * 100)}%</span>
+              <span className="tabular-nums font-medium text-ink">
+                {Math.round(progressRatio * 100)}%
+              </span>
             </div>
-            <div className="h-[2px] w-full bg-line overflow-hidden">
+            <div className="h-[3px] w-full bg-line overflow-hidden">
               <div
                 className="h-full w-full bg-ink origin-left transition-transform duration-500"
                 style={{ transform: `scaleX(${progressRatio})` }}
@@ -206,29 +270,23 @@ export function RitualTimer({
         </div>
       </div>
 
-      {/* 하단 컨트롤 */}
-      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line pt-4">
-        <div className="flex items-center gap-2.5">
+      {/* 하단 컨트롤 (시작 / 일시정지 / 초기화, 최소 높이 48px) */}
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-line pt-5">
+        <div className="flex flex-wrap items-center gap-2.5">
           <button
             type="button"
             onClick={handleToggle}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 bg-accent px-6 text-[14px] font-medium text-bg hover:bg-accent-hover transition-colors cursor-pointer"
+            className="inline-flex min-h-[48px] min-w-[132px] items-center justify-center gap-2 bg-accent px-6 text-[16px] ui-label font-medium text-bg hover:bg-accent-hover transition-colors cursor-pointer"
           >
             {running ? (
               <>
                 <Pause className="h-4 w-4" strokeWidth={1.5} />
-                <span>잠시 멈추기</span>
+                <span>일시정지</span>
               </>
             ) : (
               <>
                 <Play className="h-4 w-4" strokeWidth={1.5} />
-                <span>
-                  {remaining === 0
-                    ? "다시 시작하기"
-                    : elapsed > 0
-                    ? "이어서 호흡하기"
-                    : "호흡 시작하기"}
-                </span>
+                <span>{remaining === 0 ? "다시 시작" : "시작"}</span>
               </>
             )}
           </button>
@@ -236,7 +294,7 @@ export function RitualTimer({
           <button
             type="button"
             onClick={handleReset}
-            className="inline-flex min-h-[48px] items-center justify-center gap-2 border border-line bg-bg px-4 text-[14px] font-medium text-ink hover:border-ink transition-colors cursor-pointer"
+            className="inline-flex min-h-[48px] min-w-[104px] items-center justify-center gap-2 border border-line bg-bg px-5 text-[16px] ui-label font-medium text-ink hover:border-ink transition-colors cursor-pointer"
           >
             <RotateCcw className="h-4 w-4" strokeWidth={1.5} />
             <span>초기화</span>
@@ -247,7 +305,7 @@ export function RitualTimer({
           type="button"
           onClick={() => setSoundEnabled((v) => !v)}
           aria-pressed={soundEnabled}
-          className="inline-flex min-h-[48px] items-center gap-2 px-3 text-[13px] text-muted hover:text-ink transition-colors cursor-pointer"
+          className="inline-flex min-h-[48px] items-center gap-2 px-3 text-[14.5px] ui-label text-muted hover:text-ink transition-colors cursor-pointer"
         >
           {soundEnabled ? (
             <>

@@ -57,7 +57,7 @@ export function DemoCheckoutModal() {
           <div className="flex items-center justify-between border-b border-line px-6 py-5">
             <h2
               id="demo-checkout-title"
-              className="text-[20px] font-semibold text-ink"
+              className="font-editorial-kr text-[21.5px] font-bold text-ink"
             >
               주문 시연 안내
             </h2>
@@ -75,10 +75,10 @@ export function DemoCheckoutModal() {
           <div className="px-6 py-6 space-y-6 overflow-y-auto max-h-[68dvh]">
             <div className="border border-line bg-surface p-4 flex items-start gap-3">
               <ShieldCheck
-                className="h-5 w-5 shrink-0 text-accent mt-0.5"
+                className="h-5 w-5 shrink-0 text-accent mt-1"
                 strokeWidth={1.5}
               />
-              <div className="text-[14px] leading-[1.65] text-ink">
+              <div className="text-[15.5px] leading-[1.68] text-ink">
                 <p className="font-medium">
                   실제 결제·배송 및 개인정보 수집이 없는 시연용 스토어입니다.
                 </p>
@@ -90,7 +90,7 @@ export function DemoCheckoutModal() {
             </div>
 
             <div>
-              <p className="text-[13px] font-medium text-muted mb-3">
+              <p className="text-[14.5px] font-medium text-muted mb-3">
                 선택한 상품 내역
               </p>
               <ul className="divide-y divide-line border-y border-line">
@@ -106,18 +106,18 @@ export function DemoCheckoutModal() {
                         className="h-16 w-16 shrink-0 object-cover border border-line bg-bg"
                       />
                       <div className="min-w-0">
-                        <p className="text-[15px] font-medium text-ink">
+                        <p className="text-[16.5px] font-medium text-ink">
                           {item.productName}
                         </p>
-                        <p className="mt-0.5 text-[13px] text-muted">
+                        <p className="mt-0.5 text-[14.5px] text-muted">
                           {item.optionSummary}
                         </p>
-                        <p className="mt-1 text-[13px] text-muted tabular-nums">
+                        <p className="mt-1 text-[14.5px] text-muted tabular-nums">
                           단가 {formatKRW(item.unitPrice)} × {item.quantity}개
                         </p>
                       </div>
                     </div>
-                    <p className="shrink-0 text-[15px] font-semibold text-ink tabular-nums">
+                    <p className="shrink-0 text-[16.5px] font-semibold text-ink tabular-nums">
                       {formatKRW(item.unitPrice * item.quantity)}
                     </p>
                   </li>
@@ -125,10 +125,10 @@ export function DemoCheckoutModal() {
               </ul>
 
               <div className="pt-4 flex items-baseline justify-between">
-                <span className="text-[14px] font-medium text-muted">
+                <span className="text-[15.5px] font-medium text-muted">
                   총 상품금액
                 </span>
-                <span className="text-[22px] font-semibold text-ink tabular-nums">
+                <span className="text-[23.5px] font-semibold text-ink tabular-nums">
                   {formatKRW(checkoutModal.totalAmount)}
                 </span>
               </div>
@@ -141,23 +141,24 @@ export function DemoCheckoutModal() {
                 href={SITE_INFO.surveyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex min-h-[52px] items-center justify-center gap-2 bg-accent px-5 text-[14px] font-medium text-bg hover:bg-accent-hover transition-colors"
+                className="flex-1 inline-flex min-h-[52px] items-center justify-center gap-2 bg-accent px-5 text-[15.5px] ui-label font-medium text-bg hover:bg-accent-hover transition-colors"
               >
                 <span>구매의향·피드백 설문 참여하기</span>
                 <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
               </a>
             ) : (
-              <span
-                className="flex-1 inline-flex min-h-[52px] items-center justify-center bg-line px-5 text-[14px] font-medium text-muted select-none"
-                aria-disabled="true"
+              <a
+                href={SITE_INFO.feedbackEmailHref}
+                className="flex-1 inline-flex min-h-[52px] items-center justify-center gap-2 bg-accent px-5 text-[15.5px] ui-label font-medium text-bg hover:bg-accent-hover transition-colors"
               >
-                설문 준비 중
-              </span>
+                <span>피드백 의견 보내기</span>
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+              </a>
             )}
             <button
               type="button"
               onClick={closeCheckoutModal}
-              className="inline-flex min-h-[52px] items-center justify-center border border-ink bg-bg px-6 text-[14px] font-medium text-ink hover:bg-ink hover:text-bg transition-colors cursor-pointer"
+              className="inline-flex min-h-[52px] items-center justify-center border border-ink bg-bg px-6 text-[15.5px] ui-label font-medium text-ink hover:bg-ink hover:text-bg transition-colors cursor-pointer"
             >
               계속 둘러보기
             </button>

@@ -43,13 +43,13 @@ export function CatalogClient() {
 
   return (
     <div className="w-full bg-bg">
-      {/* 상단 제목 + 6개 텍스트 탭 (1366×900에서 첫 상품 이미지 350px 이내 시작) */}
+      {/* 상단 제목 + 6개 텍스트 탭 */}
       <section className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10 pt-6 md:pt-8">
         <div className="flex flex-col md:flex-row md:items-baseline justify-between gap-2 pb-4">
-          <h1 className="text-[24px] sm:text-[28px] font-semibold leading-[1.3] text-ink">
+          <h1 className="font-editorial-kr text-[27px] sm:text-[31.5px] font-normal leading-[1.38] tracking-[-0.02em] text-ink">
             {activeCategoryMeta.label}
           </h1>
-          <p className="text-[14px] text-muted">
+          <p className="text-[15.5px] leading-[1.65] text-muted">
             {activeCategoryMeta.description}
           </p>
         </div>
@@ -70,7 +70,7 @@ export function CatalogClient() {
                   role="tab"
                   aria-selected={isActive}
                   onClick={() => handleSelectCategory(cat.id)}
-                  className={`shrink-0 min-h-[48px] px-0.5 text-[15px] border-b-2 transition-colors cursor-pointer ${
+                  className={`shrink-0 min-h-[48px] px-0.5 text-[16px] ui-label border-b-2 transition-colors cursor-pointer ${
                     isActive
                       ? "border-accent text-ink font-medium"
                       : "border-transparent text-muted hover:text-ink"
@@ -88,17 +88,17 @@ export function CatalogClient() {
       {activeCategory === "refill" && (
         <section className="w-full border-b border-line bg-surface">
           <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10 py-8 md:py-10 space-y-6">
-            <div className="max-w-[60ch]">
-              <h2 className="text-[20px] sm:text-[22px] font-semibold text-ink">
+            <div className="max-w-[62ch]">
+              <h2 className="font-editorial-kr text-[22px] sm:text-[24px] font-bold text-ink">
                 전용 소모품 리필 안내
               </h2>
-              <p className="mt-1.5 text-[14px] text-muted">
+              <p className="mt-2 text-[15.5px] leading-[1.72] text-muted">
                 티백, 디퓨저 향액·오일, 108장 잡념 노트 내지, 연꽃 입체 편지지 추가 팩을
                 본품 규격에 맞게 다시 채워 사용할 수 있습니다.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
               {getRefillProducts().map((item) => {
                 const hasRequiredOptions = Boolean(
                   item.refill.requiredTypeOptions && item.refill.requiredScentOptions
@@ -106,12 +106,12 @@ export function CatalogClient() {
                 return (
                   <div
                     key={item.slug}
-                    className="border border-line bg-bg p-6 flex flex-col justify-between gap-5"
+                    className="border border-line bg-bg p-6 flex flex-col justify-between gap-5 h-full"
                   >
-                    <div className="space-y-3">
+                    <div className="space-y-3.5">
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <p className="text-[13px] text-muted">
+                          <p className="text-[14.5px] text-muted">
                             본품:{" "}
                             <Link
                               href={`/products/${item.slug}`}
@@ -120,16 +120,16 @@ export function CatalogClient() {
                               {item.name}
                             </Link>
                           </p>
-                          <h3 className="mt-1 text-[18px] font-semibold text-ink">
+                          <h3 className="mt-1.5 font-editorial-kr text-[20px] font-bold text-ink">
                             {item.refill.refillName}
                           </h3>
                         </div>
-                        <p className="shrink-0 text-[18px] font-semibold text-accent tabular-nums">
+                        <p className="shrink-0 text-[19.5px] font-semibold text-accent tabular-nums">
                           {formatKRW(item.refill.refillPrice ?? 0)}
                         </p>
                       </div>
 
-                      <dl className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 border-t border-line pt-3 text-[13px]">
+                      <dl className="grid grid-cols-1 sm:grid-cols-2 gap-3 border-t border-line pt-3.5 text-[14.5px] leading-[1.65]">
                         <div>
                           <dt className="text-muted">리필 구성</dt>
                           <dd className="text-ink mt-0.5">{item.refill.unit}</dd>
@@ -168,7 +168,7 @@ export function CatalogClient() {
                               quantity: 1,
                             })
                           }
-                          className="min-h-[48px] bg-accent px-3 text-[14px] font-medium text-bg hover:bg-accent-hover transition-colors cursor-pointer"
+                          className="min-h-[48px] bg-accent px-3 text-[15.5px] ui-label font-medium text-bg hover:bg-accent-hover transition-colors cursor-pointer"
                         >
                           리필 구매하기
                         </button>
@@ -185,7 +185,7 @@ export function CatalogClient() {
                               quantity: 1,
                             })
                           }
-                          className="min-h-[48px] border border-ink bg-bg px-3 text-[14px] font-medium text-ink hover:bg-ink hover:text-bg transition-colors cursor-pointer"
+                          className="min-h-[48px] border border-ink bg-bg px-3 text-[15.5px] ui-label font-medium text-ink hover:bg-ink hover:text-bg transition-colors cursor-pointer"
                         >
                           장바구니 담기
                         </button>
@@ -199,9 +199,9 @@ export function CatalogClient() {
         </section>
       )}
 
-      {/* 상품 목록 그리드 (상단 여백 최소화) */}
+      {/* 상품 목록 그리드 */}
       <section className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10 pt-6 pb-16 md:pt-7 md:pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12 items-stretch">
           {filteredProducts.map((product, idx) => (
             <ProductCard
               key={product.slug}

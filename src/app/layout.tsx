@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Gowun_Batang } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import { Header } from "@/components/layout/Header";
@@ -6,6 +7,20 @@ import { Footer } from "@/components/layout/Footer";
 import { CartDrawer } from "@/components/CartDrawer";
 import { DemoCheckoutModal } from "@/components/DemoCheckoutModal";
 import { SITE_INFO } from "@/data/site";
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
+const gowunBatang = Gowun_Batang({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-gowun-batang",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -21,7 +36,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html
+      lang="ko"
+      className={`${cormorant.variable} ${gowunBatang.variable}`}
+    >
       <head>
         <link
           rel="stylesheet"

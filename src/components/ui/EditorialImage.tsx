@@ -48,9 +48,9 @@ export function EditorialImage({
         role="img"
         aria-label={alt}
       >
-        <p className="text-[13px] text-muted">{aspectRatio}</p>
-        <p className="mt-2 text-sm text-ink max-w-[26ch]">{alt}</p>
-        <p className="mt-3 text-[12px] text-muted border-t border-line pt-2">
+        <p className="text-[14.5px] text-muted">{aspectRatio}</p>
+        <p className="mt-2 text-[15.5px] text-ink max-w-[26ch]">{alt}</p>
+        <p className="mt-3 text-[13.5px] text-muted border-t border-line pt-2">
           {replacePath || src || "/public/images/products/slot.png"}
         </p>
       </div>
@@ -70,7 +70,7 @@ export function EditorialImage({
         className={`h-full w-full object-cover object-center ${imgClassName}`}
       />
       {showAiCaption && (
-        <span className="pointer-events-none absolute bottom-2 right-2 bg-bg/92 px-2 py-0.5 text-[11px] text-muted border border-line">
+        <span className="pointer-events-none absolute bottom-2 right-2 bg-bg/92 px-2 py-1 text-[12.5px] leading-none text-muted border border-line">
           프로젝트용 AI 연출 시안
         </span>
       )}

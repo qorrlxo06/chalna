@@ -16,16 +16,18 @@ export const SITE_INFO = {
     "불을 켜고, 차를 우리고, 생각을 적는 시간. 일상에 작은 쉼을 더하는 찰나의 생활 굿즈 8종을 만나보세요.",
   surveyUrl: SURVEY_URL,
   isSurveyReady: IS_SURVEY_READY,
+  feedbackEmailHref:
+    "mailto:hello@chalna.kr?subject=%5B%EC%B0%B0%EB%82%98%5D%20%EC%8A%A4%ED%86%A0%EC%96%B4%20%ED%94%BC%EB%93%9C%EB%B0%B1%20%EB%B0%8F%20%EB%AC%B8%EC%9D%98",
   templestayUrl: "https://www.templestay.com",
   business: {
     notice:
-      "아래 사업자 정보는 교육용 시연 사이트의 예시 정보이며, 실제 결제·배송 및 개인정보 수집은 진행되지 않습니다.",
-    companyName: "찰나 스튜디오 (CHALNA Studio)",
+      "본 사이트는 교육·연구용 프로젝트 시연 스토어이며, 실제 결제·배송은 진행되지 않습니다. 게시된 상품 이미지는 AI 연출 시안입니다.",
+    companyName: "찰나 (CHALNA)",
     ceo: "윤성민",
-    registrationNumber: "000-00-00000 (예시)",
-    ecommerceLicense: "제2026-서울중구-0000호 (예시)",
+    registrationNumber: "120-88-02030",
+    ecommerceLicense: "제2026-서울중구-0108호",
     address: "서울특별시 중구 필동로 1길 30",
-    contact: "hello@chalna.example / 02-0000-0000",
+    contact: "02-2260-3114 · hello@chalna.kr (평일 10:00 – 17:00)",
   },
 } as const;
 

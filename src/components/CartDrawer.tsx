@@ -66,7 +66,7 @@ export function CartDrawer() {
       <div className="flex items-center justify-between border-b border-line px-6 py-5 shrink-0">
         <h2
           id="cart-drawer-title"
-          className="text-[20px] font-semibold text-ink"
+          className="font-editorial-kr text-[21.5px] font-bold text-ink"
         >
           장바구니 <span className="tabular-nums text-accent">({totalCount})</span>
         </h2>
@@ -85,16 +85,16 @@ export function CartDrawer() {
       <div className="flex-1 overflow-y-auto px-6 py-6">
         {items.length === 0 ? (
           <div className="flex h-full min-h-[260px] flex-col items-center justify-center text-center">
-            <p className="text-[16px] font-medium text-ink">
+            <p className="text-[17.5px] font-medium text-ink">
               장바구니가 비어 있습니다.
             </p>
-            <p className="mt-2 text-[14px] text-muted">
+            <p className="mt-2 text-[15.5px] text-muted">
               일상에 작은 쉼을 더하는 생활 굿즈를 둘러보세요.
             </p>
             <Link
               href="/products"
               onClick={closeCart}
-              className="mt-6 inline-flex min-h-[48px] items-center justify-center border border-ink px-6 text-[14px] font-medium text-ink hover:bg-ink hover:text-bg transition-colors"
+              className="mt-6 inline-flex min-h-[48px] items-center justify-center border border-ink px-6 text-[15.5px] ui-label font-medium text-ink hover:bg-ink hover:text-bg transition-colors"
             >
               상품 보러가기
             </Link>
@@ -120,7 +120,7 @@ export function CartDrawer() {
                       <Link
                         href={`/products/${item.productSlug}`}
                         onClick={closeCart}
-                        className="text-[15px] font-medium text-ink hover:text-accent transition-colors"
+                        className="text-[16.5px] font-medium text-ink hover:text-accent transition-colors leading-[1.4]"
                       >
                         {item.productName}
                       </Link>
@@ -133,10 +133,10 @@ export function CartDrawer() {
                         <Trash2 className="h-4 w-4" strokeWidth={1.5} />
                       </button>
                     </div>
-                    <p className="text-[13px] text-muted leading-[1.5]">
+                    <p className="mt-0.5 text-[14.5px] text-muted leading-[1.55]">
                       {item.optionSummary}
                     </p>
-                    <p className="mt-1 text-[12px] text-muted tabular-nums">
+                    <p className="mt-1 text-[13.5px] text-muted tabular-nums">
                       단가 {formatKRW(item.unitPrice)}
                     </p>
 
@@ -150,7 +150,7 @@ export function CartDrawer() {
                         >
                           <Minus className="h-3.5 w-3.5" strokeWidth={1.5} />
                         </button>
-                        <span className="w-9 text-center text-[14px] text-ink tabular-nums">
+                        <span className="w-9 text-center text-[15.5px] text-ink tabular-nums">
                           {item.quantity}
                         </span>
                         <button
@@ -162,7 +162,7 @@ export function CartDrawer() {
                           <Plus className="h-3.5 w-3.5" strokeWidth={1.5} />
                         </button>
                       </div>
-                      <p className="text-[15px] font-semibold text-ink tabular-nums">
+                      <p className="text-[16.5px] font-semibold text-ink tabular-nums">
                         {formatKRW(item.unitPrice * item.quantity)}
                       </p>
                     </div>
@@ -178,18 +178,18 @@ export function CartDrawer() {
       {items.length > 0 && (
         <div className="border-t border-line bg-surface px-6 py-5 shrink-0 space-y-4">
           <div className="flex items-baseline justify-between">
-            <span className="text-[14px] font-medium text-muted">총 상품금액</span>
-            <span className="text-[22px] font-semibold text-ink tabular-nums">
+            <span className="text-[15.5px] font-medium text-muted">총 상품금액</span>
+            <span className="text-[23.5px] font-semibold text-ink tabular-nums">
               {formatKRW(totalAmount)}
             </span>
           </div>
-          <p className="text-[12px] text-muted">
+          <p className="text-[13.5px] text-muted">
             장바구니에 담은 상품은 현재 브라우저에 보관됩니다.
           </p>
           <button
             type="button"
             onClick={openCartCheckout}
-            className="w-full min-h-[52px] bg-accent text-[15px] font-medium text-bg hover:bg-accent-hover transition-colors cursor-pointer"
+            className="w-full min-h-[52px] bg-accent text-[16.5px] ui-label font-medium text-bg hover:bg-accent-hover transition-colors cursor-pointer"
           >
             주문하기
           </button>

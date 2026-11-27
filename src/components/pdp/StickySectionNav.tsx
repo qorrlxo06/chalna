@@ -51,7 +51,7 @@ export function StickySectionNav({
   return (
     <nav
       aria-label="상세페이지 섹션 바로가기"
-      className="sticky top-16 md:top-[72px] z-30 w-full border-y border-line bg-bg/95 backdrop-blur-sm"
+      className="sticky top-16 md:top-[74px] z-30 w-full border-y border-line bg-bg/95 backdrop-blur-sm"
     >
       <div className="mx-auto max-w-[1320px] px-4 sm:px-6 lg:px-10">
         <ul className="flex items-center gap-6 sm:gap-8 overflow-x-auto whitespace-nowrap no-scrollbar -mb-[1px]">
@@ -63,7 +63,7 @@ export function StickySectionNav({
                   href={`#${section.id}`}
                   onClick={() => setActiveId(section.id)}
                   aria-current={isActive ? "true" : undefined}
-                  className={`inline-flex min-h-[48px] items-center text-[14px] border-b-2 transition-colors ${
+                  className={`inline-flex min-h-[48px] items-center text-[15.5px] ui-label border-b-2 transition-colors ${
                     isActive
                       ? "border-accent text-ink font-medium"
                       : "border-transparent text-muted hover:text-ink"

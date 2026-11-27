@@ -46,12 +46,12 @@ export default function PolicyPage() {
 
   return (
     <div className="w-full bg-bg">
-      <div className="mx-auto max-w-[960px] px-4 sm:px-6 lg:px-10 py-12 md:py-18 space-y-14">
-        <header className="border-b border-line pb-7 space-y-2.5">
-          <h1 className="text-[28px] sm:text-[32px] font-semibold text-ink">
+      <div className="mx-auto max-w-[980px] px-4 sm:px-6 lg:px-10 py-12 md:py-18 space-y-14">
+        <header className="border-b border-line pb-7 space-y-3">
+          <h1 className="font-editorial-kr text-[29.5px] sm:text-[33.5px] font-normal text-ink">
             이용 안내 · 교환·환불 · 법적 고지
           </h1>
-          <p className="text-[15px] text-muted max-w-[60ch]">
+          <p className="text-[16.5px] leading-[1.72] text-muted max-w-[60ch]">
             찰나(CHALNA) 스토어의 청약철회, 교환·환불 기준 및 품목별 안전·표시 안내입니다.
           </p>
         </header>
@@ -59,25 +59,25 @@ export default function PolicyPage() {
         {/* 1. 청약철회 및 교환·환불 */}
         <section id="refund" className="space-y-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="text-[22px] font-semibold text-ink">
+            <h2 className="font-editorial-kr text-[23.5px] font-bold text-ink">
               청약철회(수령 후 7일) 및 교환·환불 안내
             </h2>
             <Link
               href="/policy/returns"
-              className="text-[14px] font-medium text-accent underline underline-offset-4 hover:text-accent-hover"
+              className="text-[15.5px] ui-label font-medium text-accent underline underline-offset-4 hover:text-accent-hover"
             >
               교환·환불 전용 페이지 보기
             </Link>
           </div>
 
           <div className="overflow-x-auto border-t border-ink">
-            <table className="w-full border-collapse text-left text-[14px] sm:text-[15px]">
+            <table className="w-full border-collapse text-left text-[15.5px] sm:text-[16px]">
               <tbody className="divide-y divide-line border-b border-line">
                 <tr>
-                  <th className="w-[30%] bg-surface px-5 py-4 font-medium text-ink align-top">
+                  <th className="w-[30%] bg-surface px-5 py-4 font-medium text-ink align-middle">
                     청약철회 기간
                   </th>
-                  <td className="px-5 py-4 text-muted">
+                  <td className="w-[70%] px-5 py-4 text-muted align-middle leading-[1.7]">
                     재화를 공급받은 날로부터 <strong className="text-ink font-medium">7일 이내</strong> 단순 변심에 의한
                     청약철회 및 교환·반품 신청이 가능합니다. 표시·광고 내용과 다르거나
                     계약 내용과 다르게 이행된 경우에는 수령일로부터 3개월 이내(그 사실을
@@ -85,28 +85,28 @@ export default function PolicyPage() {
                   </td>
                 </tr>
                 <tr>
-                  <th className="bg-surface px-5 py-4 font-medium text-ink align-top">
+                  <th className="bg-surface px-5 py-4 font-medium text-ink align-middle">
                     교환·환불 절차
                   </th>
-                  <td className="px-5 py-4 text-muted">
+                  <td className="px-5 py-4 text-muted align-middle leading-[1.7]">
                     1) 고객센터 접수 → 2) 반품 수거 및 상품 검수(파손·사용 여부 확인) →
                     3) 반품 도착 확인 후 영업일 기준 3일 이내 환불 또는 교환품 발송.
                   </td>
                 </tr>
                 <tr>
-                  <th className="bg-surface px-5 py-4 font-medium text-ink align-top">
+                  <th className="bg-surface px-5 py-4 font-medium text-ink align-middle">
                     반품 배송비 기준
                   </th>
-                  <td className="px-5 py-4 text-muted">
+                  <td className="px-5 py-4 text-muted align-middle leading-[1.7]">
                     단순 변심에 의한 반품·교환 시 왕복 배송비는 구매자 부담이며, 상품 불량·오배송
                     등 판매자 귀책 사유 시 전액 판매자 부담입니다.
                   </td>
                 </tr>
                 <tr>
-                  <th className="bg-surface px-5 py-4 font-medium text-ink align-top">
+                  <th className="bg-surface px-5 py-4 font-medium text-ink align-middle">
                     청약철회 제한 사유
                   </th>
-                  <td className="px-5 py-4 text-muted">
+                  <td className="px-5 py-4 text-muted align-middle leading-[1.7]">
                     소비자 귀책으로 상품이 멸실·훼손된 경우, 티백·디퓨저 향액 등 밀봉 포장을
                     개봉해 재판매가 곤란한 소모품, 사용 또는 일부 소비로 가치가 현저히 감소한
                     경우는 교환·환불이 제한될 수 있습니다.
@@ -117,9 +117,9 @@ export default function PolicyPage() {
           </div>
         </section>
 
-        {/* 2. 품목군별 안전·표시 기준 안내 (상품 코드 P0X 미표기) */}
+        {/* 2. 품목군별 안전·표시 기준 안내 */}
         <section id="compliance" className="space-y-4">
-          <h2 className="text-[22px] font-semibold text-ink">
+          <h2 className="font-editorial-kr text-[23.5px] font-bold text-ink">
             품목군별 안전·표시 기준 안내
           </h2>
 
@@ -127,13 +127,13 @@ export default function PolicyPage() {
             {COMPLIANCE_ITEMS.map((row) => (
               <div
                 key={row.item}
-                className="py-5 grid grid-cols-1 md:grid-cols-12 gap-3 text-[14px]"
+                className="py-5 grid grid-cols-1 md:grid-cols-12 gap-3 text-[15.5px] items-start"
               >
                 <div className="md:col-span-4">
                   <p className="font-semibold text-ink">{row.item}</p>
-                  <p className="text-[12px] text-accent mt-0.5">{row.law}</p>
+                  <p className="text-[13.5px] text-accent mt-1">{row.law}</p>
                 </div>
-                <p className="md:col-span-8 text-muted leading-[1.65]">
+                <p className="md:col-span-8 text-muted leading-[1.72]">
                   {row.detail}
                 </p>
               </div>
@@ -143,37 +143,39 @@ export default function PolicyPage() {
 
         {/* 3. 사업자 정보 */}
         <section id="business" className="space-y-4">
-          <h2 className="text-[22px] font-semibold text-ink">사업자 정보</h2>
+          <h2 className="font-editorial-kr text-[23.5px] font-bold text-ink">
+            사업자 정보
+          </h2>
 
           <div className="border border-line bg-surface p-6 space-y-4">
-            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[14px]">
+            <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[15.5px]">
               <div>
-                <dt className="text-[12px] text-muted">상호명</dt>
-                <dd className="text-ink mt-0.5">{business.companyName}</dd>
+                <dt className="text-[13.5px] text-muted">상호명</dt>
+                <dd className="text-ink mt-1">{business.companyName}</dd>
               </div>
               <div>
-                <dt className="text-[12px] text-muted">대표자</dt>
-                <dd className="text-ink mt-0.5">{business.ceo}</dd>
+                <dt className="text-[13.5px] text-muted">대표자</dt>
+                <dd className="text-ink mt-1">{business.ceo}</dd>
               </div>
               <div>
-                <dt className="text-[12px] text-muted">사업자등록번호</dt>
-                <dd className="text-ink mt-0.5">{business.registrationNumber}</dd>
+                <dt className="text-[13.5px] text-muted">사업자등록번호</dt>
+                <dd className="text-ink mt-1 tabular-nums">{business.registrationNumber}</dd>
               </div>
               <div>
-                <dt className="text-[12px] text-muted">통신판매업신고번호</dt>
-                <dd className="text-ink mt-0.5">{business.ecommerceLicense}</dd>
+                <dt className="text-[13.5px] text-muted">통신판매업신고</dt>
+                <dd className="text-ink mt-1 tabular-nums">{business.ecommerceLicense}</dd>
               </div>
               <div>
-                <dt className="text-[12px] text-muted">사업장 소재지</dt>
-                <dd className="text-ink mt-0.5">{business.address}</dd>
+                <dt className="text-[13.5px] text-muted">주소</dt>
+                <dd className="text-ink mt-1">{business.address}</dd>
               </div>
               <div>
-                <dt className="text-[12px] text-muted">연락처 및 이메일</dt>
-                <dd className="text-ink mt-0.5">{business.contact}</dd>
+                <dt className="text-[13.5px] text-muted">고객센터 / 이메일</dt>
+                <dd className="text-ink mt-1 tabular-nums">{business.contact}</dd>
               </div>
             </dl>
-            <p className="border-t border-line pt-3 text-[12px] leading-[1.65] text-muted">
-              {business.notice} 게시된 모든 상품 이미지는 프로젝트용 AI 연출 시안입니다.
+            <p className="border-t border-line pt-3.5 text-[13.5px] leading-[1.65] text-muted">
+              {business.notice}
             </p>
           </div>
         </section>
@@ -181,7 +183,7 @@ export default function PolicyPage() {
         <div className="pt-2">
           <Link
             href="/products"
-            className="inline-flex min-h-[52px] items-center justify-center border border-ink px-7 text-[14px] font-medium text-ink hover:bg-ink hover:text-bg transition-colors"
+            className="inline-flex min-h-[52px] items-center justify-center border border-ink px-7 text-[15.5px] ui-label font-medium text-ink hover:bg-ink hover:text-bg transition-colors"
           >
             상품 목록으로 돌아가기
           </Link>

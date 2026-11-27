@@ -1,5 +1,5 @@
 /* Hallmark · v2.0.0 · custom · genre: editorial · surface: absolute · posture: restrained · nav: topbar · footer: multi-column · hero: split · signature: calm-ritual-commerce */
-/* Hallmark · critique · Unified Pretendard typography and #262926/#666D64/#65755F/#F6F7F3/#E2E6DF tokens, tightened above-the-fold density. */
+/* Hallmark · critique · Restored Gowun Batang + Cormorant Garamond + Pretendard brand typography, +1pt global scale, and strict row/column alignment. */
 /* Hallmark · waive 7b · pure white canvas · User specification explicitly mandates #FFFFFF base background for neutral product color fidelity across all eight goods. */
 @import "tailwindcss";
 
@@ -14,6 +14,8 @@
   --color-line: #E2E6DF;
 
   --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-serif-kr: var(--font-gowun-batang), "Gowun Batang", "Noto Serif KR", Georgia, serif;
+  --font-serif-en: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
 }
 
 :root {
@@ -55,9 +57,10 @@ body {
   background-color: var(--bg);
   color: var(--ink);
   font-family: var(--font-body);
-  font-size: 16px;
+  font-size: 17.5px;
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.72;
+  letter-spacing: -0.01em;
   word-break: keep-all;
   overflow-wrap: break-word;
   overflow-x: clip;
@@ -67,8 +70,10 @@ body {
 
 h1,
 h2 {
-  font-family: var(--font-body);
   color: var(--ink);
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
   overflow-wrap: break-word;
   min-width: 0;
   text-wrap: balance;
@@ -76,8 +81,10 @@ h2 {
 
 h3,
 h4 {
-  font-family: var(--font-body);
   color: var(--ink);
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
   overflow-wrap: break-word;
   min-width: 0;
 }
@@ -87,8 +94,26 @@ a:active {
   opacity: 0.88;
 }
 
+/* 브랜드 세리프 타이포그래피 유틸리티 (v1 컨셉 서체 복원) */
+.font-editorial-en {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+}
+
+.font-editorial-kr {
+  font-family: var(--font-gowun-batang), "Gowun Batang", "Noto Serif KR", Georgia, serif;
+  line-height: 1.38;
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+}
+
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+.ui-label {
+  line-height: 1;
+  letter-spacing: 0.01em;
 }
 
 /* 비대칭 2단 그리드 (이미지 트랙 minmax 보장) */
